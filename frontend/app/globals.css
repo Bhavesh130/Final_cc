@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  @apply bg-bg text-gray-200 font-mono antialiased;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-border rounded;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@layer components {
+  .panel {
+    @apply bg-panel border border-border rounded-lg;
+  }
+  .panel-title {
+    @apply text-[11px] uppercase tracking-wider text-muted px-3 py-2 border-b border-border;
+  }
+  .btn {
+    @apply px-3 py-1.5 rounded text-sm font-semibold transition-colors disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+  .btn-buy {
+    @apply btn bg-up/20 text-up hover:bg-up/30 border border-up/40;
+  }
+  .btn-sell {
+    @apply btn bg-down/20 text-down hover:bg-down/30 border border-down/40;
+  }
+  .btn-submit {
+    @apply btn bg-purple text-white hover:opacity-90;
+  }
+  .input {
+    @apply bg-bg border border-border rounded px-2 py-1.5 text-sm text-gray-100 focus:outline-none focus:border-blue;
+  }
+}

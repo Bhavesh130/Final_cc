@@ -1,0 +1,29 @@
+# E2E stack: the app container (with the LLM mocked) plus a Playwright runner.
+# Usage:  docker compose -f test/docker-compose.test.yml up --build --abort-on-container-exit
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    environment:
+      LLM_MOCK: "true"
+      OPENROUTER_API_KEY: "test-key-not-used"
+    expose:
+      - "8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health')"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  e2e:
+    image: mcr.microsoft.com/playwright:v1.48.0-jammy
+    depends_on:
+      app:
+        condition: service_healthy
+    environment:
+      BASE_URL: "http://app:8000"
+    working_dir: /work
+    volumes:
+      - ./:/work
+    command: sh -c "npm install && npx playwright test"

@@ -205,3 +205,20 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# --- FinAlly project ---
+# Node / Next.js (frontend, e2e)
+node_modules/
+.next/
+frontend/out/
+test/test-results/
+test/playwright-report/
+
+# SQLite runtime database (volume-mounted at runtime)
+db/*.db
+db/*.db-shm
+db/*.db-wal
+!db/.gitkeep
+
+# Local env file (use .env.example as the template)
+.env

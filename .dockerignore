@@ -1,0 +1,15 @@
+**/node_modules
+**/.next
+frontend/out
+**/.venv
+**/__pycache__
+**/*.pyc
+.git
+.github
+db/*.db
+db/*.db-*
+test
+planning
+*.md
+!backend/README.md
+.env
